@@ -17,7 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
