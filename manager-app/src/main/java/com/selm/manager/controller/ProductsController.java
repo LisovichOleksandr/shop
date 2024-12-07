@@ -1,8 +1,8 @@
 package com.selm.manager.controller;
 
+import com.selm.manager.client.ProductsRestClient;
 import com.selm.manager.controller.payload.NewProductPayload;
 import com.selm.manager.entity.Product;
-import com.selm.manager.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,11 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/catalogue/products")
 public class ProductsController {
-    private final ProductService productService;
+    private final ProductsRestClient productsRestClient;
 
     @GetMapping("/list")
     public String getProductsList(Model model){
-        List<Product> products = this.productService.findAllProduct();
+        List<Product> products = this.productsRestClient.findAllProduct();
         model.addAttribute("products", products);
         return "catalogue/products/list";
     }
@@ -42,8 +42,8 @@ public class ProductsController {
                     .toList());
             return "catalogue/products/new_product";
         } else {
-            Product product = this.productService.createProduct(payload.title(), payload.details());
-            return "redirect:/catalogue/products/%d".formatted(product.getId());
+            Product product = this.productsRestClient.createProduct(payload.title(), payload.details());
+            return "redirect:/catalogue/products/%d".formatted(product.id());
         }
     }
 }
