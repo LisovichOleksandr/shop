@@ -1,4 +1,4 @@
-package com.selm.manager.confog;
+package com.selm.manager.config;
 
 import com.selm.manager.client.RestClientProductsRestClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ public class ClientBeans {
 
     @Bean
     public RestClientProductsRestClient productsRestClient(
-            @Value("${selmag.cervices.catalogue.uri:http://localhost:8081}") String catalogueBaseUri){
+            @Value("${selm.cervices.catalogue.uri:http://localhost:8081}") String catalogueBaseUri){
         return new RestClientProductsRestClient(RestClient.builder()
                 .baseUrl(catalogueBaseUri)
                 .build());

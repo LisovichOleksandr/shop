@@ -1,2 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rise?currentSchema=catalogue
+    username: rise_admin
+    password: roserisen
+  jpa:
+    hibernate:
+      ddl-auto: validate # Ensure schema matches JPA entities
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+flyway:
+  enabled: true
+#  location: lasspath:db/migration
+  schemas:
+    - catalogue
+  baseline-on-migrate: true # Use if `catalogue` is not empty
 server:
   port: 8081
+logging:
+  level:
+    root: info
+    web: debug
+#
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/rise?currentSchema=catalogue
+#    username: rise_admin
+#    password: roserisen
+#flyway:
+#  schemas:
+#    - public
+#    - catalogue
+#server:
+#  port: 8081
+
