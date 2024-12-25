@@ -9,8 +9,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-flyway:
-  enabled: true
+#  flyway:
+#    enabled: false
 #  location: lasspath:db/migration
   schemas:
     - catalogue
