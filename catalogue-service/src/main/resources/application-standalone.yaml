@@ -9,6 +9,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 #  flyway:
 #    enabled: false
 #  location: lasspath:db/migration
@@ -19,6 +20,7 @@ server:
   port: 8081
 logging:
   level:
+    sql: info
     root: info
     web: debug
 #

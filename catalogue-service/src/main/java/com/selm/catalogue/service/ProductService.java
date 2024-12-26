@@ -5,7 +5,7 @@ import com.selm.catalogue.entity.Product;
 import java.util.Optional;
 
 public interface ProductService {
-    Iterable<Product> findAllProduct();
+    Iterable<Product> findAllProduct(String filter);
 
     Optional<Product> findProduct(int id);
 
