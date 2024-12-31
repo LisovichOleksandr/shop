@@ -5,17 +5,18 @@ spring:
     password: roserisen
   jpa:
     hibernate:
-      ddl-auto: validate # Ensure schema matches JPA entities
+      ddl-auto: update # validate - было  Ensure schema matches JPA entities
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-#  flyway:
-#    enabled: false
-#  location: lasspath:db/migration
-  schemas:
-    - catalogue
-  baseline-on-migrate: true # Use if `catalogue` is not empty
+  flyway:
+    enabled: true
+    location: lasspath:db/migration
+    schemas:
+      - public
+      - catalogue
+    baseline-on-migrate: true # Use if `catalogue` is not empty
 server:
   port: 8081
 logging:
@@ -23,16 +24,4 @@ logging:
     sql: info
     root: info
     web: debug
-#
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/rise?currentSchema=catalogue
-#    username: rise_admin
-#    password: roserisen
-#flyway:
-#  schemas:
-#    - public
-#    - catalogue
-#server:
-#  port: 8081
 
