@@ -2,3 +2,8 @@ selm:
   services:
     catalogue:
       uri: http://localhost:8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rise?currentSchema=user_management
+    username: rise_admin
+    password: roserisen
