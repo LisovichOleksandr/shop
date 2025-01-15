@@ -18,5 +18,3 @@ create table user_management.t_user_authority
     id_authority int not null references user_management.t_authority (id);
     constraint uk_user_authority unique (id_user, id_authority)
 );
-
-
