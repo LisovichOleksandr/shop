@@ -27,20 +27,20 @@ public class ProductRestController {
     private final MessageSource messageSource;
 
     @ModelAttribute("product")
-    public Product getProduct(@PathVariable("productId") int productId){
+    public Product getProduct(@PathVariable("productId") int productId) {
         return this.productService.findProduct(productId).orElseThrow(() ->
                 new NoSuchElementException("catalogue.errors.products.not_found"));
     }
 
     @GetMapping
-    public Product findProduct(@ModelAttribute("product") Product product){
+    public Product findProduct(@ModelAttribute("product") Product product) {
         return product;
     }
 
     @PatchMapping
     public ResponseEntity<?> updateProduct(@PathVariable("productId") int productId,
-                                              @Valid @RequestBody UpdateProductPayload payload,
-                                              BindingResult bindingResult)
+                                           @Valid @RequestBody UpdateProductPayload payload,
+                                           BindingResult bindingResult)
             throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) {
@@ -67,8 +67,49 @@ public class ProductRestController {
                                                                       Locale locale) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,
-                    this.messageSource.getMessage(exception.getMessage(), new Object[0],
-                            exception.getMessage(), locale)));
+                        this.messageSource.getMessage(exception.getMessage(), new Object[0],
+                                exception.getMessage(), locale)));
     }
 
+    public ProductService getProductService() {
+        return this.productService;
+    }
+
+    public MessageSource getMessageSource() {
+        return this.messageSource;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof ProductRestController)) return false;
+        final ProductRestController other = (ProductRestController) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$productService = this.getProductService();
+        final Object other$productService = other.getProductService();
+        if (this$productService == null ? other$productService != null : !this$productService.equals(other$productService))
+            return false;
+        final Object this$messageSource = this.getMessageSource();
+        final Object other$messageSource = other.getMessageSource();
+        if (this$messageSource == null ? other$messageSource != null : !this$messageSource.equals(other$messageSource))
+            return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof ProductRestController;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $productService = this.getProductService();
+        result = result * PRIME + ($productService == null ? 43 : $productService.hashCode());
+        final Object $messageSource = this.getMessageSource();
+        result = result * PRIME + ($messageSource == null ? 43 : $messageSource.hashCode());
+        return result;
+    }
+
+    public String toString() {
+        return "ProductRestController(productService=" + this.getProductService() + ", messageSource=" + this.getMessageSource() + ")";
+    }
 }
